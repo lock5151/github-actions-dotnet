@@ -43,7 +43,7 @@ jobs:
     name: CD Deploy Dev
     needs: build
     #environment: dev #cannot have this 
-    uses: ./.github/workflows/steps-deploy.yml
+    uses: ./.github/workflows/step-deploy.yml
     with:
       ENV: dev
     secrets: inherit
@@ -52,7 +52,7 @@ jobs:
     name: CD Deploy Prod
     needs: deploy-dev
     #environment: dev #cannot have this 
-    uses: ./.github/workflows/steps-deploy.yml
+    uses: ./.github/workflows/step-deploy.yml
     with:
       ENV: prod
     secrets: inherit
