@@ -46,6 +46,7 @@ jobs:
     uses: ./.github/workflows/step-deploy.yml
     with:
       ENV: dev
+      resource_group_name: rg-dometrain-dev
     secrets: inherit
 
   deploy-prod:
@@ -55,5 +56,6 @@ jobs:
     uses: ./.github/workflows/step-deploy.yml
     with:
       ENV: prod
+      resource_group_name: rg-dometrain-prod
     secrets: inherit
     

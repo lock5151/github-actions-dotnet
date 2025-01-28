@@ -7,6 +7,10 @@ on:
             type: string
             required: true
             description: Name (tag) of the environment to deploy to
+        resource_group_name:
+            type: string
+            required: true
+            description: Azure resource group
     secrets:
         AZURE_CLIENT_ID:
             required: true
@@ -46,4 +50,12 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          slot-name: slot
           package: artifacts/ 
+
+      - name: Swap Slots
+        id: swap-slots-on-webapp
+        run: |
+          az webapp deployment slot swap -g ${{ inputs.resource_group_name }} -n ${{ vars.AZURE_WEBAPP_NAME }} --slot slot --target-slot production --verbose
+
+            
